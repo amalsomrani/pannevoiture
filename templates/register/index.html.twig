@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RegisterController!{% endblock %}
+
+{% block body %}
+<section class="form">
+<div class="container">
+      <u><h2 style="text-align: center;">Inscrivez-vous maintenant</h2></u> 
+
+   {% if notification %}
+
+   <div class="alert alert-success">
+   {{notification}}
+   </div>
+   {% endif %}
+
+  <div class="row">
+    <div class="col">
+       <div class="col-12">
+            {{ form_start(form) }}
+
+          <div class="mb-6">
+              {{ form_label(form.nom, 'nom',{'label_attr':{'class':'form-label'}}) }}
+              {{ form_row(form.nom, {'attr' : {'class' :'form-control'}}) }}
+     
+             {{ form_label(form.prenom , 'prenom',{'label_attr':{'class':'form-label'}}) }}
+            {{ form_row(form.prenom , {'attr' : {'class' :'form-control'}}) }}
+       </div>
+   
+       {{ form_label(form.adresse , 'adresse',{'label_attr':{'class':'form-label'}}) }}
+       {{ form_row(form.adresse , {'attr' : {'class' :'form-control'}}) }}
+      <div class="mb-6">
+          {{ form_label(form.telephone , 'telephone',{'label_attr':{'class':'form-label'}}) }}
+          {{ form_row(form.telephone , {'attr' : {'class' :'form-control'}}) }}
+
+          {{ form_label(form.date , 'date',{'label_attr':{'class':'form-label'}}) }}
+          {{ form_row(form.date , {'attr' : {'class' :'form-control'}}) }}
+      
+         {{ form_label(form.email , 'email',{'label_attr':{'class':'form-label'}}) }}
+         {{ form_row(form.email , {'attr' : {'class' :'form-control'}}) }}
+
+       
+           {{ form_row(form.password) }}
+       </div>
+        {{ form_end(form) }}
+    
+    </div>
+    
+  </div>
+  <style>
+    body
+    {
+    width: 100%;
+    height: 100%;
+    background-image:url(https://twimg0-a.akamaihd.net/a/1350072692/t1/img/front_page/jp-mountain@2x.jpg);
+    background-size: cover;
+    background-attachment:fixed;
+    margin: 0;
+    padding: 0;
+    }
+
+/* ========== DEMO STYLES ========== */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}
+
+/* ===== Demo Styles ===== */
+.form{
+  font-family: 'Open Sans';
+  font-weight: 400;
+  font-size: 14px;
+  color: #323232;
+  width: 650px;
+  height: auto;
+  margin: 10% auto;
+  padding: 10px;
+  background-color: #c5c5c5;
+  border: 1px solid #f5f5f5;
+  border-radius: 15px;
+  -webkit-box-shadow:  0px 0px 10px 0px #f5f5f5;
+  box-shadow:  0px 0px 10px 0px #f5f5f5;
+}
+
+  </style>
+
+{% endblock %}
