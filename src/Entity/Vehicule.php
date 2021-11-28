@@ -88,5 +88,9 @@ class Vehicule
         $this->nombreplaces = $nombreplaces;
 
         return $this;
+       
+    }
+    public function __toString() {
+        return $this->nom;
     }
 }

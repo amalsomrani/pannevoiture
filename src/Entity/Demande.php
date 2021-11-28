@@ -3,7 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\DemandeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+
 
 /**
  * @ORM\Entity(repositoryClass=DemandeRepository::class)
@@ -23,9 +26,9 @@ class Demande
     private $dateajout;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="float")
      */
-    private $typevoiture;
+    private $longitude;
 
     /**
      * @ORM\Column(type="float")
@@ -33,16 +36,29 @@ class Demande
     private $altitude;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="string", length=255)
      */
-    private $longitude;
-
-   
+    private $typevoiture;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Service::class, inversedBy="demandes")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="demandes")
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Panne::class, inversedBy="demandes")
+     */
+    private $panne;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Service::class, mappedBy="demande")
      */
     private $service;
+
+    public function __construct()
+    {
+        $this->service = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -61,14 +77,14 @@ class Demande
         return $this;
     }
 
-    public function getTypevoiture(): ?string
+    public function getLongitude(): ?float
     {
-        return $this->typevoiture;
+        return $this->longitude;
     }
 
-    public function setTypevoiture(string $typevoiture): self
+    public function setLongitude(float $longitude): self
     {
-        $this->typevoiture = $typevoiture;
+        $this->longitude = $longitude;
 
         return $this;
     }
@@ -85,29 +101,73 @@ class Demande
         return $this;
     }
 
-    public function getLongitude(): ?float
+    public function getTypevoiture(): ?string
     {
-        return $this->longitude;
+        return $this->typevoiture;
     }
 
-    public function setLongitude(float $longitude): self
+    public function setTypevoiture(string $typevoiture): self
     {
-        $this->longitude = $longitude;
+        $this->typevoiture = $typevoiture;
 
         return $this;
     }
 
-    
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
 
-    public function getService(): ?Service
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getPanne(): ?Panne
+    {
+        return $this->panne;
+    }
+
+    public function setPanne(?Panne $panne): self
+    {
+        $this->panne = $panne;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Service[]
+     */
+    public function getService(): Collection
     {
         return $this->service;
     }
 
-    public function setService(?Service $service): self
+    public function addService(Service $service): self
     {
-        $this->service = $service;
+        if (!$this->service->contains($service)) {
+            $this->service[] = $service;
+            $service->setDemande($this);
+        }
 
         return $this;
+    }
+
+    public function removeService(Service $service): self
+    {
+        if ($this->service->removeElement($service)) {
+            // set the owning side to null (unless already changed)
+            if ($service->getDemande() === $this) {
+                $service->setDemande(null);
+            }
+        }
+
+        return $this;
+    }
+    public function __toString() 
+    {
+    return (string) $this->longitude; 
     }
 }

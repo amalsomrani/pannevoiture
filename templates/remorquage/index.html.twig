@@ -3,131 +3,177 @@
 {% block title %}Remorquage{% endblock %}
 
 {% block body %}
+{% if remorquage %}
+    <table id="articles" class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>adresse</th>
+          <th>profession</th>
+          <th>Zoneintervention</th>
+          <th>joursdetravail</th>
+          <th>description</th>
+          <th>Telephone</th>
+          <th>email</th>
+          
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for remorquage in remorquage %}
+          <tr>
+            <td>{{ remorquage.nom }}</td>
+            <td>{{ remorquage.adresse }}</td>
+            <td>{{ remorquage.profession }}</td>
+            <td>{{ remorquage.zoneintervention }}</td>
+            <td>{{ remorquage.joursdetravail }}</td>
+            <td>{{ remorquage.description }}</td>
+            <td>{{ remorquage. telephone}}</td>
+            <td>{{ remorquage.email }}</td>
+             
+           <td>
+              <a href="/remorquage/{{ remorquage.id }}" class="btn btn-dark">Détails</a>
+              <a href="/remorquage/edit/{{ remorquage.id }}" class="btn btn-dark">Modifier</a>
+              <a href="/remorquage/delete/{{ remorquage.id }}" class="btn btn-danger" 
+              onclick="return confirm('Etes-vous sûr de supprimer cet article?');">Supprimer</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>Aucun articles</p>
+  {% endif %} 
+  <ul class="cards col-md-12" >
+  {% for item in remorquage %}
+  <li>
+    <a href="{{path('remorquage_show',{'id':item.id})}}" class="card">
+      <img src="/images/{{ item.image }}" class="card__image" alt="" />
+      <div class="card__overlay">
+        <div class="card__header">
+                               
+          <img class="card__thumb" src="/images/{{ item.image }}" alt="" />
+          <div class="card__header-text">
+            <h3 class="card__title">{{ item.nom}}</h3>            
 
-<section class="wrapper-fostrap">
-
-   {% for item in remorquage %}
-   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-   <div class="container">
-     <div class="row">
-        <div class="card-wrapper col-lg-4 col-md-6 col-xs-12">
-         <div class="card">
-           <div class="card-img-wrapper">
-            <img src="/images/{{ item.image }}"  alt="image">
-           </div>
-           <div class="card-body">
-             <h5 class="card-title">Special title treatment Special</h5>
-             <div class="card-content">
-               <p class="card-text">{{ item.description }}</p>
-               <a href="{{path('register')}}" class="btn btn-primary">s'inscrire</a>
-             </div>
-           </div>
-         </div>
-       </div>
-     </div>
-   </div>
-   
+          </div>
+        </div>
+       <p class="card__description">{{item.description}}
+      </div>
+    </a>      
+  </li>
   
-   <!-- Topic Cards -->
-    
   {% endfor %}
-</section>
-
+</ul>
 <style>
-  .wrapper-fostrap{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
 
-  .card-wrapper {
-    margin-bottom: 30px;
-    margin-top: 30px;
-  }
-  .card-image .card .card-img-wrapper {
-    height: 100%;
-  }
-  .card-image .card .card-body {
-    display: none;
-  }
-  .card-image-title-description .card .card-img-wrapper {
-    max-height: 160px;
-  }
-  .card-image-title-description .card {
-    position: relative;
-    min-height: 300px;
-  }
-  .card-image-title-description .card .card-body {
-    height: auto;
-    position: relative;
-    top: 0;
-    margin-bottom: -70px;
-  }
-  .card-image-title-description .card:hover .card-body {
-    top: -70px;
-  }
-  .card-image-title-description .card .card-body .card-title {
-    margin-bottom: .75rem;
-  }
-  .card {
-    display: inline-block;
-    position: relative;
-    overflow: hidden;
-    min-height: 400px;
-    height: 100%;
-  }
-  .card:hover {
-    box-shadow: 8px 12px 31px -10px #ab98ab;
-  }
-  .card-img-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 50%;
-    overflow: hidden;
-  }
-  .card-img-wrapper img {
-    transition: 1.5s ease;
-  }
-  .card:hover .card-img-wrapper img {
-    transform: scale(1.15);
-  }
-  .card-body .card-title {
-    margin-bottom: calc(50% + 20px);
-    transition: 1.5s ease;
-  }
-  .card:hover .card-body .card-title {
-    margin-bottom: .75rem;
-  }
+
+:root {
+  --surface-color: #fff;
+  --curve: 40;
+}
+
   
-  .card-body {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 50%;
-    background-color: #fff;
-    transition: 1.5s ease;
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(300px, 1fr));
+  grid-template-rows: 1;
+  gap: 1rem;
+  margin: 2rem 2vw;
+  margin-right: 10px;
+  margin-left: 15px;
+  list-style-type: none;
+}
+
+@media (max-width: 900px) {
+  .cards {
+    grid-template-rows: repeat(3, 1fr) !important;
+    grid-template-columns: minmax(600px, 1fr);
   }
-  .card-content {
-    left: 0;
-    right: 0;
-    overflow: hidden;
-    width: 100%;
-    height: auto;
-    transition: 1.5s ease;
-  }
-  .card:hover .card-body {
-    height: 80%;
-  }
-  .card:hover .card-content {
-    bottom: 0;
-  }
-  body {
-    margin: 0;
-    background-image: linear-gradient(to right, #ECE9E6 , #FFFFFF);
-  }
+}
+
+.card {
+  position: relative;
+  display: block;
+  height: 100%;  
+  border-radius: calc(var(--curve) * 1px);
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.card__image {      
+  width: 100%;
+  height: auto;
+}
+
+.card__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;      
+  border-radius: calc(var(--curve) * 1px);    
+  background-color: var(--surface-color);      
+  transform: translateY(100%);
+  transition: .2s ease-in-out;
+}
+
+.card:hover .card__overlay {
+  transform: translateY(0);
+}
+
+.card__header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  padding: 2em;
+  border-radius: calc(var(--curve) * 1px) 0 0 0;    
+  background-color: var(--surface-color);
+  transform: translateY(-100%);
+  transition: .2s ease-in-out;
+}
+
+
+.card:hover .card__header {
+  transform: translateY(0);
+}
+
+.card__thumb {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;      
+  border-radius: 50%;      
+}
+
+.card__title {
+  font-size: 1em;
+  margin: 0 0 .3em;
+  color: #6A515E;
+}
+
+.card__tagline {
+  display: block;
+  margin: 1em 0;
+  font-family: "MockFlowFont";  
+  font-size: .8em; 
+  color: #D7BDCA;  
+}
+
+.card__status {
+  font-size: .8em;
+  color: #D7BDCA;
+}
+
+.card__description {
+  padding: 0 2em 2em;
+  margin: 0;
+  color: #D7BDCA;
+  font-family: "MockFlowFont";   
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}    
 </style>
   {% endblock %}

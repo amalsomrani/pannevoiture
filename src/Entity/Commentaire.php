@@ -22,12 +22,12 @@ class Commentaire
      */
     private $text;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $image;
-
     
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="commentaires")
+     */
+    private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity=Admin::class, inversedBy="commentaires")
@@ -36,8 +36,19 @@ class Commentaire
 
     /**
      * @ORM\ManyToOne(targetEntity=Service::class, inversedBy="commentaires")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $service;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $nomutilisateur;
 
     public function getId(): ?int
     {
@@ -56,19 +67,20 @@ class Commentaire
         return $this;
     }
 
-    public function getImage(): ?string
+    
+
+    public function getUser(): ?User
     {
-        return $this->image;
+        return $this->user;
     }
 
-    public function setImage(string $image): self
+    public function setUser(?User $user): self
     {
-        $this->image = $image;
+        $this->user = $user;
 
         return $this;
     }
 
-    
     public function getAdmin(): ?Admin
     {
         return $this->admin;
@@ -89,6 +101,30 @@ class Commentaire
     public function setService(?Service $service): self
     {
         $this->service = $service;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getNomutilisateur(): ?string
+    {
+        return $this->nomutilisateur;
+    }
+
+    public function setNomutilisateur(string $nomutilisateur): self
+    {
+        $this->nomutilisateur = $nomutilisateur;
 
         return $this;
     }

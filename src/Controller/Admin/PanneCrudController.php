@@ -6,6 +6,7 @@ use App\Entity\Panne;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 
 class PanneCrudController extends AbstractCrudController
 {
@@ -20,9 +21,12 @@ class PanneCrudController extends AbstractCrudController
         return [
             
             TextField::new('type'),
-            DateField::new('date'),
-            TextField::new('lieu')
+            ImageField::new('image')
+            ->setBasePath('images/')
+            ->setUploadDir('public/images')
+            ->setUploadedFileNamePattern('[randomhash].[extension]'),
         ];
+        
     }
     
 }

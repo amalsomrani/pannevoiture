@@ -44,10 +44,7 @@ class Mecancien
      */
     private $telephone;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $email;
+   
 
     /**
      * @ORM\ManyToOne(targetEntity=Admin::class, inversedBy="mecanciens")
@@ -65,11 +62,26 @@ class Mecancien
     private $publicites;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Service::class, inversedBy="macancien")
+     * @ORM\ManyToOne(targetEntity=Service::class, inversedBy="mecancien")
      */
     private $service;
 
-    
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $zoneintervention;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $joursdetravail;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $profession;
+
+
     
 
     public function __construct()
@@ -142,17 +154,7 @@ class Mecancien
         return $this;
     }
 
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
+   
 
     public function getAdmin(): ?Admin
     {
@@ -208,6 +210,8 @@ class Mecancien
         return $this;
     }
 
+    
+
     public function getService(): ?Service
     {
         return $this->service;
@@ -220,5 +224,42 @@ class Mecancien
         return $this;
     }
 
-   
+    public function getZoneintervention(): ?string
+    {
+        return $this->zoneintervention;
+    }
+
+    public function setZoneintervention(string $zoneintervention): self
+    {
+        $this->zoneintervention = $zoneintervention;
+
+        return $this;
+    }
+
+    public function getJoursdetravail(): ?string
+    {
+        return $this->joursdetravail;
+    }
+
+    public function setJoursdetravail(string $joursdetravail): self
+    {
+        $this->joursdetravail = $joursdetravail;
+
+        return $this;
+    }
+
+    public function getProfession(): ?string
+    {
+        return $this->profession;
+    }
+
+    public function setProfession(string $profession): self
+    {
+        $this->profession = $profession;
+
+        return $this;
+    }
+    public function __toString() {
+        return $this->nom;
+    }
 }

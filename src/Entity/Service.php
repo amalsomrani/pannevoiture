@@ -18,68 +18,41 @@ class Service
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Mecancien::class, mappedBy="service")
-     */
-    private $macancien;
-
     /**
      * @ORM\OneToMany(targetEntity=Remorquage::class, mappedBy="service")
      */
     private $remorquage;
 
     /**
-     * @ORM\OneToMany(targetEntity=Demande::class, mappedBy="service")
+     * @ORM\OneToMany(targetEntity=Mecancien::class, mappedBy="service")
      */
-    private $demandes;
+    private $mecancien;
 
     /**
      * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="service")
      */
     private $commentaires;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Demande::class, inversedBy="service")
+     */
+    private $demande;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $nom;
+
     public function __construct()
     {
-        $this->macancien = new ArrayCollection();
         $this->remorquage = new ArrayCollection();
-        $this->demandes = new ArrayCollection();
+        $this->mecancien = new ArrayCollection();
         $this->commentaires = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    /**
-     * @return Collection|Mecancien[]
-     */
-    public function getMacancien(): Collection
-    {
-        return $this->macancien;
-    }
-
-    public function addMacancien(Mecancien $macancien): self
-    {
-        if (!$this->macancien->contains($macancien)) {
-            $this->macancien[] = $macancien;
-            $macancien->setService($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMacancien(Mecancien $macancien): self
-    {
-        if ($this->macancien->removeElement($macancien)) {
-            // set the owning side to null (unless already changed)
-            if ($macancien->getService() === $this) {
-                $macancien->setService(null);
-            }
-        }
-
-        return $this;
     }
 
     /**
@@ -113,29 +86,29 @@ class Service
     }
 
     /**
-     * @return Collection|Demande[]
+     * @return Collection|Mecancien[]
      */
-    public function getDemandes(): Collection
+    public function getMecancien(): Collection
     {
-        return $this->demandes;
+        return $this->mecancien;
     }
 
-    public function addDemande(Demande $demande): self
+    public function addMecancien(Mecancien $mecancien): self
     {
-        if (!$this->demandes->contains($demande)) {
-            $this->demandes[] = $demande;
-            $demande->setService($this);
+        if (!$this->mecancien->contains($mecancien)) {
+            $this->mecancien[] = $mecancien;
+            $mecancien->setService($this);
         }
 
         return $this;
     }
 
-    public function removeDemande(Demande $demande): self
+    public function removeMecancien(Mecancien $mecancien): self
     {
-        if ($this->demandes->removeElement($demande)) {
+        if ($this->mecancien->removeElement($mecancien)) {
             // set the owning side to null (unless already changed)
-            if ($demande->getService() === $this) {
-                $demande->setService(null);
+            if ($mecancien->getService() === $this) {
+                $mecancien->setService(null);
             }
         }
 
@@ -171,4 +144,36 @@ class Service
 
         return $this;
     }
+
+    public function getDemande(): ?Demande
+    {
+        return $this->demande;
+    }
+
+    public function setDemande(Demande $demande): self
+    {
+        $this->demande = $demande;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+  
+    public function __toString() {
+        if(is_null($this->nom)) {
+            return 'NULL';
+        }
+        return $this->nom;
+    }
+   
 }

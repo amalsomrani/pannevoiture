@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TelephoneField;
 
 class RemorquageCrudController extends AbstractCrudController
@@ -27,6 +28,8 @@ class RemorquageCrudController extends AbstractCrudController
             TextField::new('adresse'),
             TelephoneField::new('telephone'),
             EmailField::new('email'),
+            NumberField::new('lon'),
+            NumberField::new('lat'),
             ImageField::new('image')
             ->setBasePath('images/')
             ->setUploadDir('public/images')

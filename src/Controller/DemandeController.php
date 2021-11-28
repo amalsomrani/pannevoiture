@@ -2,19 +2,16 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\User;
+use App\Form\DemandeType;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class DemandeController extends AbstractController
 {
-    /**
-     * @Route("/demande", name="demande")
-     */
-    public function index(): Response
-    {
-        return $this->render('demande/index.html.twig', [
-            'controller_name' => 'DemandeController',
-        ]);
-    }
+
 }

@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Form\ContactType;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -44,7 +43,7 @@ class ContactController extends AbstractController
             $mailer->send($message);
 
             $this->addFlash('message', 'Le message a bien été envoyé');
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('service');
         }
         return $this->render('contact/index.html.twig', [
             'contactForm' => $form->createview()

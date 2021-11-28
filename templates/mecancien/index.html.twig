@@ -1,20 +1,130 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MecancienController!{% endblock %}
+{% block title %}Mecancien{% endblock %}
 
 {% block body %}
+ 
+  <ul class="cards col-lg-4 col-md-12 col-sm-12">
+  {% for item in mecancien %}
+  <li>
+    <a href="{{path('mecancien_show',{'id':item.id})}}" class="card">
+      <img src="/images/{{ item.image }}" class="card__image" alt="" />
+      <div class="card__overlay">
+        <div class="card__header">
+                               
+          <img class="card__thumb" src="/images/{{ item.image }}" alt="" />
+          <div class="card__header-text">
+            <h3 class="card__title">{{ item.nom}}</h3>            
+            
+
+          </div>
+        </div>
+       <p class="card__description">{{item.description}}
+      </div>
+    </a>      
+  </li>
+  
+  {% endfor %}
+</ul>
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+
+
+:root {
+  --surface-color: #fff;
+  --curve: 40;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(641px, 1fr));
+  gap: 2rem;
+  margin: 4rem 5vw;
+  padding: 0;
+  list-style-type: none;
+}
+
+.card {
+  position: relative;
+  display: block;
+  height: 100%;  
+  border-radius: calc(var(--curve) * 1px);
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.card__image {      
+  width: 100%;
+  height: auto;
+}
+
+.card__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;      
+  border-radius: calc(var(--curve) * 1px);    
+  background-color: var(--surface-color);      
+  transform: translateY(100%);
+  transition: .2s ease-in-out;
+}
+
+.card:hover .card__overlay {
+  transform: translateY(0);
+}
+
+.card__header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  padding: 2em;
+  border-radius: calc(var(--curve) * 1px) 0 0 0;    
+  background-color: var(--surface-color);
+  transform: translateY(-100%);
+  transition: .2s ease-in-out;
+}
+
+
+.card:hover .card__header {
+  transform: translateY(0);
+}
+
+.card__thumb {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;      
+  border-radius: 50%;      
+}
+
+.card__title {
+  font-size: 1em;
+  margin: 0 0 .3em;
+  color: #6A515E;
+}
+
+.card__tagline {
+  display: block;
+  margin: 1em 0;
+  font-family: "MockFlowFont";  
+  font-size: .8em; 
+  color: #D7BDCA;  
+}
+
+.card__status {
+  font-size: .8em;
+  color: #D7BDCA;
+}
+
+.card__description {
+  padding: 0 2em 2em;
+  margin: 0;
+  color: #D7BDCA;
+  font-family: "MockFlowFont";   
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}    
 </style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/opt/lampp/htdocs/pannevoiture/src/Controller/MecancienController.php'|file_link(0) }}">src/Controller/MecancienController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/opt/lampp/htdocs/pannevoiture/templates/mecancien/index.html.twig'|file_link(0) }}">templates/mecancien/index.html.twig</a></code></li>
-    </ul>
-</div>
-{% endblock %}
+  {% endblock %}

@@ -54,12 +54,15 @@ class Admin
      */
     private $commentaires;
 
+  
+
     public function __construct()
     {
         $this->remorquages = new ArrayCollection();
         $this->mecanciens = new ArrayCollection();
         $this->publicites = new ArrayCollection();
         $this->commentaires = new ArrayCollection();
+        
     }
 
     public function getId(): ?int
@@ -222,4 +225,6 @@ class Admin
 
         return $this;
     }
+
+    
 }

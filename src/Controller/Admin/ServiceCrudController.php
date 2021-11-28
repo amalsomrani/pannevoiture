@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Service;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 
 class ServiceCrudController extends AbstractCrudController
 {
@@ -12,14 +13,16 @@ class ServiceCrudController extends AbstractCrudController
         return Service::class;
     }
 
-    /*
+    
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            AssociationField::new('remorquage'),
+            AssociationField::new('mecancien'),
+            
+         
+             
         ];
     }
-    */
+    
 }

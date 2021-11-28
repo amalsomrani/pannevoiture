@@ -3,18 +3,414 @@
 {% block title %}Hello ServiceController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/opt/lampp/htdocs/pannevoiture/src/Controller/ServiceController.php'|file_link(0) }}">src/Controller/ServiceController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/opt/lampp/htdocs/pannevoiture/templates/service/index.html.twig'|file_link(0) }}">templates/service/index.html.twig</a></code></li>
-    </ul>
+<div class="row">
+  <div class="image col-lg-12" style="margin-left:20px ;border-radius:10px">
+     <img src="{{asset('images/serviceremo.jpeg')}}" alt="Cinque Terre" width="98%" height="350";
+     height:"50%;">
+  </div>
 </div>
-{% endblock %}
+   <div>
+     <a href="{{path('remorquage')}}">Remorquage</a>
+     <a href="{{path('mecancien')}}">Mecancien</a>
+    </div>
+    <main class="container">
+  <div class="card">
+    <img src="https://res.cloudinary.com/alexandracaulea/image/upload/v1582179610/user_fckc9f.jpg" alt="User image" class="cardimage" />
+    <div class="cardtext">
+      <h2>Alexandra Caulea</h2>
+      <p>I enjoy drinking a cup of coffee every day</p>
+    </div>
+    <ul class="cardinfo">
+      <li>
+        <span class="cardinfostats">172</span>
+        <span>posts</span>
+      </li>
+      <li>
+        <span class="cardinfostats">47</span>
+        <span>followers</span>
+      </li>
+      <li>
+        <span class="cardinfostats">20</span>
+        <span>following</span>
+      </li>
+    </ul>
+    <div class="cardaction">
+      <button class="cardactionbutton cardaction--follow">follow</button>
+      <button class="cardactionbutton cardaction--message">message</button>
+    </div>
+  </div>
+</main>
+<div></div>
+         <!-- Nos Service-->
+      
+         <div style="background-color:cornsilk;">
+          <div class="container clearfix" style="padding: 2em;margin-left:20" id="service">
+  
+            <div class="mx-auto center clearfix" style="max-width: 900px;">
+              <h1 style="text-align: center; font-size:xx-large;
+              font-family: 'Times New Roman', Times, serif;
+              text-shadow: 2px 2px;padding-top:30px;"> NOS SERVICES DE DÉPANNAGE</h1>
+            </div>
+            <div class="row services-tab justify-content-center col-mb-50" style="padding-top:30px;">
+              <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="row">
+                  <div class="feature-box fbox-sm fbox-plain" data-animate="fadeIn">
+                    <div class="col-sm-12">
+                      <img src="{{asset('images/3.png')}}" class="center-c service-c" data-animate="fadeInUp" data-delay="100" alt="Chrome">
+                    </div>
+                    <div class="fbox-content center justify-c col-sm-12">
+                      <h3 style="font-family: 'Times New Roman', Times, serif;font-size:20px">Changement de batterie</h3>
+                      <div class="text-center">
+                        <a href="{{path('detail')}}" class="btn btn-warning" style=" border-radius: 10px;"><span>En savoir plus</span></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="row">
+                  <div class="feature-box fbox-sm fbox-plain" data-animate="fadeIn">
+                    <div class="col-sm-12">
+                      <img src="{{asset('images/3.png')}}" class="center-c service-c" data-animate="fadeInUp" data-delay="200" alt="Chrome">
+                    </div>
+                    <div class="fbox-content center justify-c col-sm-12">
+                      <h3 style="font-family: 'Times New Roman', Times, serif;font-size:20px">Transport de marchandises</h3>
+                      <div class="text-center">
+                        <a href="{{path('detail')}}" class="btn btn-warning" style=" border-radius: 10px;margin-right:20px"><span>En savoir plus</span></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="row">
+                  <div class="feature-box fbox-sm fbox-plain" data-animate="fadeIn">
+                    <div class="col-sm-12">
+                      <img src="{{asset('images/3.png')}}" class="center-c service-c" data-animate="fadeInUp" data-delay="300" alt="Chrome">
+                    </div>
+                    <div class="fbox-content center justify-c col-sm-12">
+                      <h3 style="font-family: 'Times New Roman', Times, serif;font-size:20px">Gardiennage</h3>
+                      <div class="text-center">
+                        <a href="{{path('detail')}}" class="btn btn-warning" style=" border-radius: 10px;"><span>En savoir plus</span></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="row">
+                  <div class="feature-box fbox-sm fbox-plain" data-animate="fadeIn">
+                    <div class="col-sm-12">
+                      <img src="{{asset('images/3.png')}}" class="center-c service-c" data-animate="fadeInUp" data-delay="400" alt="Chrome">
+                    </div>
+                    <div class="fbox-content center justify-c col-sm-12">
+                      <h3 style="font-family: 'Times New Roman', Times, serif;font-size:20px">Voiture embourbée</h3>
+                      <div class="text-center">
+                        <a href="{{path('detail')}}" class="btn btn-warning" style=" border-radius: 10px;"><span>En savoir plus</span></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="row">
+                  <div class="feature-box fbox-sm fbox-plain" data-animate="fadeIn">
+                    <div class="col-sm-12">
+                      <img src="{{asset('images/3.png')}}" class="center-c service-c" data-animate="fadeInUp" data-delay="800" alt="Chrome">
+                    </div>
+                    <div class="fbox-content justify-c center  col-sm-12">
+                      <h3 style="font-family: 'Times New Roman', Times, serif;font-size:20px">Garage (réparation/ entretien)</h3>
+                      <div class="text-center">
+                        <a href="{{path('detail')}}" class="btn btn-warning" style=" border-radius: 10px;"><span>En savoir plus</span></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="row">
+                  <div class="feature-box fbox-sm fbox-plain" data-animate="fadeIn">
+                    <div class="col-sm-12">
+                      <img src="{{asset('images/3.png')}}" class="center-c service-c" data-animate="fadeInUp" data-delay="700" alt="Chrome">
+                    </div>
+                    <div class="fbox-content justify-c center col-sm-12">
+                      <h3 style="font-family: 'Times New Roman', Times, serif;font-size:20px">Pneu à plat</h3>
+                      <div class="text-center">
+     
+                        <a href="{{path('detail')}}" class="btn btn-warning" style=" border-radius: 10px;"><span>En savoir plus</span></a>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="row">
+                  <div class="feature-box fbox-sm fbox-plain" data-animate="fadeIn">
+                    <div class="col-sm-12">
+                      <img src="{{asset('images/3.png')}}" class="center-c service-c" data-animate="fadeInUp" data-delay="600" alt="Chrome">
+                    </div>
+                    <div class="fbox-content justify-c center col-sm-12">
+                      <h3 style="font-family: 'Times New Roman', Times, serif;font-size:16px">Service de déverrouillage</h3>
+                      <div class="text-center">
+                        <a href="{{path('detail')}}" class="btn btn-warning" style=" border-radius: 10px;"><span>En savoir plus</span></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="row">
+                  <div class="feature-box fbox-sm fbox-plain" data-animate="fadeIn">
+                    <div class="col-sm-12">
+                      <img src="{{asset('images/3.png')}}" class="center-c service-c" data-animate="fadeInUp" data-delay="500" alt="Chrome">
+                    </div>
+                    <div class="fbox-content justify-c center col-sm-12">
+                      <h3 style="font-family: 'Times New Roman', Times, serif;font-size:20px">Panne d’essence</h3>
+                      <div class="text-center">
+                       
+                        <a href="{{path('detail')}}" class="btn btn-warning" style=" border-radius: 10px;"><span>En savoir plus</span></a>
+                       
+                       
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+             {% for item in service %}
+               <a href="{{ path('service_show', {'id':item.id } ) }}" class="btn btn-secondary ">Commenter! </a>
+  
+              {% endfor %}
+        </div>
+        </div>
+        
+      
+      
+   
+  <style>
+
+
+:root {
+  --small-green-circle: #78eea6;
+  --main-accent-color: #9b45e4;
+  --secondary-accent-color: #e13a9d;
+}
+
+a {
+  background-color: transparent;
+}
+
+img {
+  border-style: none;
+}
+
+button {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+  overflow: visible;
+  -webkit-appearance: button;
+}
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  background: #e6b2c6;
+  background: -webkit-linear-gradient(to right, #e6b2c6, #d6e5fa);
+  background: linear-gradient(to right, #e6b2c6, #d6e5fa);
+  font-family: "Lato", sans-serif;
+  font-weight: normal;
+  background-repeat: no-repeat;
+}
+
+
+
+.card {
+  padding: 1em;
+  border-radius: 0.8em;
+  background-color: #fefefe;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.042), 0 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    0 100px 80px rgba(0, 0, 0, 0.07);
+  position: relative;
+}
+.card:after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: var(--small-green-circle);
+  top: 25px;
+  right: 96px;
+  border: 2px solid white;
+}
+
+.cardimage {
+  width: 100px;
+  border-radius: 50%;
+}
+
+.cardinfo {
+  margin: 1em 0;
+  list-style-type: none;
+  padding: 0;
+}
+
+.cardinfo li {
+  display: inline-block;
+  text-align: center;
+  padding: 0.5em;
+}
+
+.cardinfostats {
+  color: var(--main-accent-color);
+  font-weight: bold;
+  font-size: 1.2em;
+  display: block;
+}
+
+.cardinfostats + span {
+  color: #969798;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.cardtext h2 {
+  margin-bottom: 0.3em;
+  font-size: 1.4em;
+  color: #6f6f6f;
+}
+
+.cardtext p {
+  margin: 0;
+  color: #999;
+  font-size: 0.95em;
+}
+
+.cardaction {
+  display: flex;
+  justify-content: space-around;
+}
+
+.cardactionbutton {
+  padding: 0.9em 1.3em;
+  text-transform: uppercase;
+  color: #fff;
+  border: none;
+  border-radius: 0.5em;
+  cursor: pointer;
+  position: relative;
+}
+
+.cardactionbutton:before {
+  content: "";
+  position: absolute;
+  border-radius: 0.5em;
+  transition: all 0.35s ease-in-out;
+}
+
+.cardactionbutton:hover:before {
+  top: -6px;
+  bottom: -6px;
+  left: -6px;
+  right: -6px;
+}
+
+.cardaction--follow {
+  background-color: var(--main-accent-color);
+}
+
+.cardactionbutton:hover:before {
+  border: 4px solid var(--main-accent-color);
+}
+
+.cardaction--message {
+  background-color: var(--secondary-accent-color);
+}
+
+.cardaction--message:hover:before {
+  border: 4px solid var(--secondary-accent-color);
+}
+
+@media (min-width: 425px) {
+  .card {
+    padding: 3em;
+  }
+
+  .card:after {
+    top: 50px;
+    right: 160px;
+  }
+
+  .cardinfo li {
+    padding: 1em;
+  }
+  .cardactionbutton {
+    padding: 0.9em 1.8em;
+  }
+}
+
+  /**Card*/
+    .center-c{
+     
+      width: 150px; ;
+      height: 150px;
+      position: relative;
+      animation-name: example;
+      animation-duration: 4s;
+      animation-direction:reverse;
+  
+      
+    }
+  /* Layout: */
+
+.col-main {
+  flex: 1;  
+}  
+
+.col-complementary {
+  flex: 1;  
+}
+
+/* Responsive: */
+
+@media only screen and (min-width: 640px) {
+  .layout {
+    display: flex;
+    padding-top: 30px;
+	
+  }
+}
+
+/* etc */
+
+.col {
+  padding: 1em;
+  margin: 0 2px 2px 0;
+  background: #b3e888;
+}
+
+.text-center{
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+   /** map*/
+   #macarte{
+    height: 50%;
+    width:100%;
+    }
+  </style>
+  {% endblock %}

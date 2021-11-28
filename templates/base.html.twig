@@ -7,6 +7,16 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" href="{{ asset('css/style.css')}}">
             <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}">
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="   crossorigin=""/>
+            <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/markercluster.css%22%3E%22%3E">
+            <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/markercluster.Default.css%22%3%22%3E">
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/markercluster.css%22%3E%22%3E">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/markercluster.Default.css%22%3%22%3E">
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.css' rel='stylesheet' />
+<link href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.1/css/all.css' rel='stylesheet'>
   </head>
    <body>
     <header>
@@ -19,9 +29,8 @@
         <nav>
         <ul>
           <li><a href="{{path('home')}}">Accueil</a></li>
-          <li><a href="{{path('remorquage')}}">Deposé votre problème</a></li>
-          <li><a href="#">Client</a></li>
-          <li><a href="">Publier votre annonce</a></li>
+          <li><a href="{{path('service')}}">Deposé votre problème</a></li>
+          <li><a href="{{path('ajouter')}}">Publier votre annonce</a></li>
           <li><a href="{{path('contact')}}">contact</a></li>
           
           
@@ -54,11 +63,95 @@
   
     
   {% block body %}{% endblock %}
-    <script src="{{ asset('js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{ asset('js/jquery-3.5.1.slim.min.js')}}"></script>
-    <script src="{{ asset('js/popper.min.js')}}"></script>
 
-    <script src="{{ asset('js/index.js')}}"></script>
+     
+ <!--Footer-->
+
+    <footer class="footer-section">
+      <div class="footer-top">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="widget company-intro-widget">
+                <a href="" class="site-logo"> <img src="{{asset('/images/log.png')}}" style="width: 100px; height: 50px;"></a>
+                <p>Remorquage Dépannage Pros est votre partenaire pour tous les imprévus de la route 24h/24 7j/7. Vous êtes victime d'une panne ou d'un accident, ADS vous apporte à tout moment grâce à son équipe de professionnels, le service de dépannage ou de remorquage dont vous avez besoin.</p>
+              </div>
+            </div><!-- widget end -->
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="widget course-links-widget">
+                <h5 class="widget-title"></h5>
+                <ul class="courses-link-list">
+                   <li><a href="{{path('home')}}">Accueil</a></li>
+                   <li><a href="{{path('service')}}">Deposé votre problème</a></li>
+                   <li><a href="#">Client</a></li>
+                   <li><a href="">Publier votre annonce</a></li>
+                   <li><a href="{{path('contact')}}">contact</a></li>
+                   <li><a href="{{path('register')}}">Inscription</a></li>
+                </ul>
+              </div>
+            </div><!-- widget end -->
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="widget latest-news-widget">
+                <h5 class="widget-title">Nos service</h5>
+                <ul class="small-post-list">
+                  <li>
+                    <div class="small-post-item">
+                      <a href="{{path('remorquage')}}" class="post-date">Remorquage</a>
+                      <h6 class="small-post-title"><a href="#">Lorem Ipsum is simply dummy text of the printing.</a></h6>
+                    </div>
+                  </li><!-- small-post-item end -->
+                  <li>
+                    <div class="small-post-item">
+                      <a href="{{path('mecancien')}}" class="post-date">Mécancien</a>
+                      <h6 class="small-post-title"><a href="#">Lorem Ipsum is simply dummy text of the printing</a></h6>
+                    </div>
+                  </li><!-- small-post-item end -->
+                </ul>
+              </div>
+            </div><!-- widget end -->
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="widget newsletter-widget">
+ 
+                <div class="footer-newsletter">
+                  <p>S'inscrire</p>
+                  <form class="news-letter-form">
+                    <input type="email" name="news-email" id="news-email" placeholder="Your email address">
+                    <input type="submit" value="inscrit">
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> 
+      </div>
+      <div class="footer-bottom">
+        <div class="container">
+          <div class="row">
+              <div class="col-md-6 col-sm-6 text-sm-left text-center">
+                <span class="copy-right-text">© 2019 <a href="https://codepen.io/anupkumar92">Anup</a> All Rights Reserved.</span>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <ul class="terms-privacy d-flex justify-content-sm-end justify-content-center">
+                  <li><a href="#">Terms & Conditions</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                </ul>
+              </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  
+  <!-- footer-bottom end -->
+   
+   
+  <script src="{{ asset('js/jquery.slim.min.js')}}"></script> 
+  <script src="{{ asset('js/popper.min.js')}}"></script>
+  <script src="{{ asset('js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{ asset('js/bootstrap.min.js')}}"></script>
+  <script src="{{asset('popper/popper-base.min.js.map_2.4.4/cdnjs/popper-base.min.js.map')}}"> </script>
+  <script src="{{ asset('js/index.js')}}"></script>
+  <script src="{{asset('js/map.js')}}"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default%22%3E%22%3E"></script>
 
     
     </body>

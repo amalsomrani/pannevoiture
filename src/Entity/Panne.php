@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PanneRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,16 +23,20 @@ class Panne
      * @ORM\Column(type="string", length=255)
      */
     private $type;
-
     /**
-     * @ORM\Column(type="date")
+     * @ORM\OneToMany(targetEntity=Demande::class, mappedBy="panne")
      */
-    private $date;
+    private $demandes;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $lieu;
+    private $image;
+
+    public function __construct()
+    {
+        $this->demandes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -49,27 +55,48 @@ class Panne
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    /**
+     * @return Collection|Demande[]
+     */
+    public function getDemandes(): Collection
     {
-        return $this->date;
+        return $this->demandes;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function addDemande(Demande $demande): self
     {
-        $this->date = $date;
+        if (!$this->demandes->contains($demande)) {
+            $this->demandes[] = $demande;
+            $demande->setPanne($this);
+        }
 
         return $this;
     }
 
-    public function getLieu(): ?string
+    public function removeDemande(Demande $demande): self
     {
-        return $this->lieu;
-    }
-
-    public function setLieu(string $lieu): self
-    {
-        $this->lieu = $lieu;
+        if ($this->demandes->removeElement($demande)) {
+            // set the owning side to null (unless already changed)
+            if ($demande->getPanne() === $this) {
+                $demande->setPanne(null);
+            }
+        }
 
         return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+    public function __toString() {
+        return $this->type;
     }
 }

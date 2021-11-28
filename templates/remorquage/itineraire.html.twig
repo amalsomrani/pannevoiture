@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ItineraireController!{% endblock %}
+  
+{% block body %}
+<section>
+<div    id="maCarte"></div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+     crossorigin=""></script>
+<script>
+var carte = L.map('maCarte').setView([36.8064835, 10.1815426], 13);
+
+  // On charge les "tuiles"
+  L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+      // Il est toujours bien de laisser le lien vers la source des données
+      attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
+      minZoom: -3,
+      maxZoom: 30
+  }).addTo(carte);
+
+
+  {% for item in remorquage %}
+  // On crée le marqueur et on lui attribue une popup
+  var marqueur = L.marker([{{ item.lat }}, {{ item.lon }}]).addTo(carte); //.addTo(carte);
+  marqueur.bindPopup("<h3>{{ item.nom }}</h3>");
+
+  {% endfor %}
+
+</script>
+</section>
+<style>
+ 
+#macarte{
+  height: 50%;
+  width:100%;
+  }
+
+</style>
+{% endblock %}

@@ -2,23 +2,26 @@
 
 namespace App\Form;
 
+use App\Entity\Commentaire;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CommentaireType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('field_name')
+            ->add('text')
+            ->add('nomutilisateur')
+
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            // Configure your form options here
+            'data_class' => Commentaire::class,
         ]);
     }
 }

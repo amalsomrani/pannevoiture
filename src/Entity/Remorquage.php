@@ -69,7 +69,30 @@ class Remorquage
      */
     private $service;
 
-   
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $lon;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $lat;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $zoneintervention;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $joursdetravail;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $profession;
 
     public function __construct()
     {
@@ -219,5 +242,68 @@ class Remorquage
         return $this;
     }
 
-    
+    public function getLon(): ?float
+    {
+        return $this->lon;
+    }
+
+    public function setLon(float $lon): self
+    {
+        $this->lon = $lon;
+
+        return $this;
+    }
+
+    public function getLat(): ?float
+    {
+        return $this->lat;
+    }
+
+    public function setLat(float $lat): self
+    {
+        $this->lat = $lat;
+
+        return $this;
+    }
+
+    public function __toString() {
+        return $this->nom;
+    }
+
+    public function getZoneintervention(): ?string
+    {
+        return $this->zoneintervention;
+    }
+
+    public function setZoneintervention(string $zoneintervention): self
+    {
+        $this->zoneintervention = $zoneintervention;
+
+        return $this;
+    }
+
+    public function getJoursdetravail(): ?string
+    {
+        return $this->joursdetravail;
+    }
+
+    public function setJoursdetravail(string $joursdetravail): self
+    {
+        $this->joursdetravail = $joursdetravail;
+
+        return $this;
+    }
+
+    public function getProfession(): ?string
+    {
+        return $this->profession;
+    }
+
+    public function setProfession(string $profession): self
+    {
+        $this->profession = $profession;
+
+        return $this;
+    }
+   
 }

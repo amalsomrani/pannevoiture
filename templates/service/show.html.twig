@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Show{% endblock %}
+
+{% block body %}
+        <section id="commentaires">
+    <h1>{{ service.commentaires | length }} commentaires : </h1>
+   {% for commentaire in service.commentaires %}
+   <div class="comment">
+       <div class="row">
+           <div class="col-3">
+              {{commentaire.nomutilisateur}} (<small>{{commentaire.date | date('d/m/y à H:i' )}}</small>)
+           </div>
+           <div class="col-9">
+              {{commentaire.text | raw}}
+           </div>
+       </div>
+
+   </div>
+   {% endfor %}
+
+
+
+   {{ form_start(commentaireForm) }}
+   {{ form_row(commentaireForm.nomutilisateur, {'attr': {'placeholder': "Votre nom"}}) }}
+   {{ form_row(commentaireForm.text, {'attr': {'placeholder': "Votre commentaire"}}) }}
+
+   <button type="submit" class="btn btn-success">Commenter !</button>
+   {{ form_end(commentaireForm) }}
+
+ </section>
+
+  {% endblock %}
